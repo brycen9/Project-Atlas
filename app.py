@@ -67,18 +67,27 @@ def search_asteroid():
     if response.status_code == 200:
         data = response.json()
 
-    text = "ASTEROID FOUND"
-    centered_text = text.center(28)
-    print("=" * 28)
-    print(centered_text)
-    print("=" * 28)
-    print()
-    print(data)
-    print(f"Name: {data["object"]["shortname"]}")
-    print(f"Designation: {data["object"]["des"]}")
-    print(f"Near-Earth Object: {data["object"]["neo"]}")
-    print(f"Potentially Hazardous: {data["object"]["pha"]}")
-    print()
+    if "object" in data:
+        text = "ASTEROID FOUND"
+        centered_text = text.center(28)
+        print("=" * 28)
+        print(centered_text)
+        print("=" * 28)
+        print()
+        print(f"Name: {data["object"]["shortname"]}")
+        print(f"Designation: {data["object"]["des"]}")
+        print(f"Near-Earth Object: {data["object"]["neo"]}")
+        print(f"Potentially Hazardous: {data["object"]["pha"]}")
+        print()
+
+    else:
+        print()
+        text = "ASTEROID NOT FOUND"
+        centered_text = text.center(28)
+        print("=" * 28)
+        print(centered_text)
+        print("=" * 28)
+        print()
 
     
 if __name__ == "__main__":
