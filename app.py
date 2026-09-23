@@ -1,4 +1,4 @@
-import requests
+from asteroid_api import get_data
 
 def main():
     greeting()
@@ -46,9 +46,6 @@ def greeting():
             print("Error! Please enter 1 or 2.")
             print()
 
-        
-
-
 def search_asteroid():
     text = "Asteroid Database"
     centered_text = text.center(27)
@@ -61,11 +58,7 @@ def search_asteroid():
     print()
     print(f"Searching for {asteroid_name}...")
 
-    url = f"https://ssd-api.jpl.nasa.gov/sbdb.api?sstr={asteroid_name}"
-    response = requests.get(url)
-
-    if response.status_code == 200:
-        data = response.json()
+    data = get_data(asteroid_name)
 
     if "object" in data:
         text = "ASTEROID FOUND"
